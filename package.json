@@ -1,5 +1,6 @@
 {
-  "name": "personal_page_2",
+  "homepage": ".",
+  "name": "personal_page",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -14,7 +15,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build -r https://github.com/Livfour/junfeng_li.git -b gh-pages"
   },
   "browserslist": {
     "production": [
@@ -27,5 +30,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
   }
 }
