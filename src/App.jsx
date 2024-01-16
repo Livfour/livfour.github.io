@@ -7,8 +7,10 @@ const App = () => {
     <Container>
       <Stack spacing={1} direction={"column"}>
         <Typography variant="h3" align="center">Junfeng Li (Mr.)</Typography>
-        <Typography variant="h5" align="center">Mobile: 17683881879</Typography>
-        <Typography variant="h5" align="center">Email: junfeng1287@gmail.com</Typography>
+        <Typography variant="h5" align="center">Mobile:&nbsp;+86 17683881879</Typography>
+        <Typography variant="h5" align="center">Email:&nbsp;
+          <a href="mailto:example@example.com">junfeng1287@gmail.com</a>
+        </Typography>
 
         <Stack spacing={10} direction={"column"}>
           <Box>
