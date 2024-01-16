@@ -9,7 +9,7 @@ const App = () => {
         <Typography variant="h3" align="center">Junfeng Li (Mr.)</Typography>
         <Typography variant="h5" align="center">Mobile:&nbsp;+86 17683881879</Typography>
         <Typography variant="h5" align="center">Email:&nbsp;
-          <Link href="mailto:junfeng1287@gmail.com">junfeng1287@gmail.com</Link>
+          <Link href="mailto:junfeng1287@gmail.com" underline="hover" target="_blank" rel="noopener">junfeng1287@gmail.com</Link>
         </Typography>
 
         <Stack spacing={10} direction={"column"}>
