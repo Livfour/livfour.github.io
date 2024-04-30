@@ -73,7 +73,7 @@ const App = () => {
                   </Stack>
                 </Stack>
                 <Typography variant="subtle1" align="left">2023, Postgraduate Individual Project</Typography>
-                <Typography variant="body1" align="left"> • Proposed a novel decoder leveraging diffusion model, applied to the task of human pose estimation.</Typography>
+                <Typography variant="body1" align="left"> • Proposed a novel decoder leveraging the diffusion model, applied to the task of human pose estimation.</Typography>
                 <Typography variant="body1" align="left"> • Adapted Vision Transformer for video input, utilized as the encoder in this project.</Typography>
                 <Typography variant="body1" align="left"> • Conducted extensive ablation studies to explore the functionality of the diffusion decoder's mechanisms, comparing its performance with a simple and a classical decoder.</Typography>
               </Stack>
@@ -81,14 +81,14 @@ const App = () => {
               <Stack spacing={0.5} direction={"column"}>
                 <Typography variant="subtitle2" align="left">APIAN Drone Order Management App for Medicine Delivery</Typography>
                 <Typography variant="subtle1" align="left">2023, APP Engineering</Typography>
-                <Typography variant="body1" align="left"> • Developed a progressive web app for drone order management, allowing NHS staff place and manage their orders and drone operators accept and reject orders.</Typography>
+                <Typography variant="body1" align="left"> • Developed a progressive web app for drone order management, allowing NHS staff to place and manage their orders while enabling drone operators to accept and reject orders.</Typography>
                 <Typography variant="body1" align="left"> • Technologies: React, ExpressJS, Material UI, Firebase Authentication, MySQL.
                 </Typography>
               </Stack>
 
               <Stack spacing={0.5} direction={"column"}>
                 <Typography variant="subtitle2" align="les dft">Ant Colony Optimisation for Mobile Robot Path Planning</Typography>
-                <Typography variant="subtle1" align="left">2021, Undergraduate Individual Project</Typography>
+                <Typography variant="subtle1" align="left">2021, Undergraduate Final Year Project</Typography>
                 <Typography variant="body1" align="left"> • Applied Ant Colony Optimisation to search a path for a robot while optimising pathlength and smoothness.</Typography>
               </Stack>
 
@@ -140,14 +140,14 @@ const App = () => {
             <Divider />
             <Stack spacing={0.5} direction={"column"}>
               <Typography variant="body1" align="left">
-                <Box component="span" fontWeight="fontWeightBold">Programming Expertise:&nbsp;
-                </Box>
-                Procedural, objected-oriented, and functional programming.
-              </Typography>
-              <Typography variant="body1" align="left">
                 <Box component="span" fontWeight="fontWeightBold">Programming Languages:&nbsp;
                 </Box>
-                C/C++, Python, Rust, Miranda, Matlab, JavaScript/TypeScript, HTML, CSS.
+                C/C++, Python, Rust, Miranda (Functional Programming), Matlab, JavaScript/TypeScript, HTML, CSS.
+              </Typography>
+              <Typography variant="body1" align="left">
+                <Box component="span" fontWeight="fontWeightBold">Machine Learning:&nbsp;
+                </Box>
+                Proficient in PyTorch with experience in research project; familiar with TensorFlow with experience in some simple projects.
               </Typography>
               <Typography variant="body1" align="left">
                 <Box component="span" fontWeight="fontWeightBold">Opertaing System:&nbsp;
@@ -157,12 +157,7 @@ const App = () => {
               <Typography variant="body1" align="left">
                 <Box component="span" fontWeight="fontWeightBold">Software:&nbsp;
                 </Box>
-                SolidWorks, AutoCAD, MATLAB, Simulink, ROS2 Iron (Self-directed Learning), Git, Docker etc.
-              </Typography>
-              <Typography variant="body1" align="left">
-                <Box component="span" fontWeight="fontWeightBold">Machine Learning:&nbsp;
-                </Box>
-                Proficient in Pytorch with experience in research project; familiar with TensorFlow with experience in some simple projects.
+                SolidWorks, AutoCAD, MATLAB, Simulink, ROS2 (Self-directed Learning), Git, Docker etc.
               </Typography>
             </Stack>
           </Box>
