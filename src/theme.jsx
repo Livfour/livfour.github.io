@@ -19,7 +19,7 @@ const theme = createTheme({
       fontSize: 16,
     },
     subtle1: {
-      fontSize: 12,
+      fontSize: 14,
     },
   },
 });
