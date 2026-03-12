@@ -27,19 +27,21 @@ export const publications = [
       "DualCoT-VLA: Visual-Linguistic Chain of Thought via Parallel Reasoning for Vision-Language-Action Models",
     authors:
       "Zhide Zhong*, Junfeng Li*, Junjie He, Haodong Yan, Xin Gong, Guanyi Zhao, Yingjie Cai, Jiantao Gao, Xu Yan, Bingbing Liu, Yingcong Chen, Liuqing Yang, Haoang Li",
+    venue: "Under Review",
   },
   {
     title:
       "VLA-OPD: Bridging Offline SFT and Online RL for Vision-Language-Action Models via On-Policy Distillation",
     authors:
       "Zhide Zhong, Haodong Yan, Junfeng Li, Junjie He, Tianran Zhang, Haoang Li",
+    venue: "Under Review",
   },
   {
     title:
       "FlowVLA: Visual Chain of Thought-based Motion Reasoning for Vision-Language-Action Models",
     authors:
       "Zhide Zhong, Haodong Yan, Junfeng Li, Xiangchen Liu, Xin Gong, Tianran Zhang, Wenxuan Song, Jiayi Chen, Xinhu Zheng, Hesheng Wang, Haoang Li",
-    venue: "arXiv preprint arXiv:2508.18269, 2025.",
+    venue: "Submitted to IEEE Transactions on Robotics (T-RO)",
     paper: "https://arxiv.org/abs/2508.18269",
     home_page: "https://irpn-lab.github.io/FlowVLA/",
   },
@@ -84,7 +86,7 @@ export const experiences = [
     institution: "University College London",
     institutionUrl: "https://www.ucl.ac.uk/",
     location: "London, United Kingdom",
-    note: "Distinction",
+    note: "Graduated with Distinction",
   },
   {
     role: "Bachelor of Engineering in Mechanical Engineering",
@@ -92,6 +94,6 @@ export const experiences = [
     institution: "University of Birmingham",
     institutionUrl: "https://www.birmingham.ac.uk/",
     location: "Birmingham, United Kingdom",
-    note: "First Class Honours",
+    note: "First-Class Honours",
   },
 ];
