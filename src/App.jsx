@@ -181,7 +181,7 @@ const Sidebar = () => (
       Research
     </Typography>
     <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>
-      World Models, Vision-Language-Action Models, 3D/4D Generation
+      Vision-Language-Action Models, World Models, 3D/4D Generation
     </Typography>
 
     <Divider sx={{ my: 2.5 }} />
@@ -265,7 +265,7 @@ const App = () => {
               {/* Publications */}
               <Box>
                 <Typography variant="h4" fontWeight={800} sx={{ mb: 2, pb: 1, borderBottom: '2px solid #333', color: '#111' }}>
-                  Publications
+                  Publications &amp; Research Experience
                 </Typography>
                 <Stack spacing={2}>
                   {publications.map((pub, i) => (

@@ -10,7 +10,7 @@ export const profile = {
       suffix: '.',
     },
     {
-      text: 'My research interests lie in **World Models** and **Vision-Language-Action (VLA) Models**. I am passionate about building embodied agents that can understand the physical world and perform complex tasks',
+      text: 'My research interests lie in **Vision-Language-Action (VLA) Models** and **World Models**. I am passionate about building embodied agents that can understand the physical world and perform complex tasks.',
     },
     {
       text: 'I am always open to research collaborations. Please feel free to reach out if you are interested in working together!',
@@ -20,22 +20,32 @@ export const profile = {
 
 export const publications = [
   {
-    title: 'SCSV: Spatial-temporal Consistent Dynamic 3D Scene Generation from Sparse Views',
-    authors: 'Junfeng Li*, Junjie He*, Wenjie Liu*, Tianyu Huang, Shunbo Zhou, Jun Ma, Hesheng Wang, and Haoang Li',
+    authors: 'Zhide Zhong*, Junfeng Li*, Junjie He, Haodong Yan, Xin Gong, Guanyi Zhao, Yingjie Cai, Jiantao Gao, Xu Yan, Bingbing Liu, Yingcong Chen, Liuqing Yang, Haoang Li',
+    title: 'DualCoT-VLA: Visual-Linguistic Chain of Thought via Parallel Reasoning for Vision-Language-Action Models',
   },
   {
-    authors: 'Zhide Zhong, Haodong Yan, Junfeng Li, Xiangchen Liu, Xin Gong, Tianran Zhang, Wenxuan Song, Jiayi Chen, Xinhu Zheng, Hesheng Wang, Haoang Li.',
+    authors: 'Zhide Zhong, Haodong Yan, Junfeng Li, Junjie He, Tianran Zhang, Haoang Li',
+    title: 'VLA-OPD: Bridging Offline SFT and Online RL for Vision-Language-Action Models via On-Policy Distillation',
+  },
+  {
+    authors: 'Zhide Zhong, Haodong Yan, Junfeng Li, Xiangchen Liu, Xin Gong, Tianran Zhang, Wenxuan Song, Jiayi Chen, Xinhu Zheng, Hesheng Wang, Haoang Li',
     title: 'FlowVLA: Visual Chain of Thought-based Motion Reasoning for Vision-Language-Action Models',
     venue: 'arXiv preprint arXiv:2508.18269, 2025.',
     paper: 'https://arxiv.org/abs/2508.18269',
   },
   {
-    authors: 'Haodong Yan, Hang Yu, Zhide Zhong, Weilin Yuan, Xin Gong, Zehang Luo, Chengxi Heyu, Junfeng Li, Wenxuan Song, Shunbo Zhou, Haoang Li.',
+    authors: 'Haodong Yan, Hang Yu, Zhide Zhong, Weilin Yuan, Xin Gong, Zehang Luo, Chengxi Heyu, Junfeng Li, Wenxuan Song, Shunbo Zhou, Haoang Li',
     title: 'Open-world Hand-Object Interaction Video Generation Based on Structure and Contact-aware Representation',
     venue: 'IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2025.',
     paper: 'https://arxiv.org/abs/2512.01677',
   },
+  {
+    title: 'SCSV: Spatial-temporal Consistent Dynamic 3D Scene Generation from Sparse Views',
+    authors: 'Junfeng Li*, Junjie He*, Wenjie Liu*, Tianyu Huang, Shunbo Zhou, Jun Ma, Hesheng Wang, Haoang Li',
+    venue: 'IEEE Transactions on Image Processing (TIP), 2025.',
+  },
 ]
+
 
 export const experiences = [
   {
