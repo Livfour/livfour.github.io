@@ -1,11 +1,12 @@
 import React from 'react'
-import { Container, Stack, Box, Typography, Paper, Link, IconButton, Tooltip } from '@mui/material'
+import { Container, Stack, Box, Typography, Paper, Link, IconButton, Tooltip, Avatar, Divider } from '@mui/material'
 import EmailIcon from '@mui/icons-material/Email'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import SchoolIcon from '@mui/icons-material/School'
 import ArticleIcon from '@mui/icons-material/Article'
 import HomeIcon from '@mui/icons-material/Home'
 import { profile, publications, experiences } from './data'
+import avatarImg from './assets/ avatar.jpg'
 
 const cardSx = {
   p: 3,
@@ -25,7 +26,7 @@ function renderBioLine(item, idx) {
     return (
       <Typography key={idx} variant="body1" sx={{ lineHeight: 1.8, color: '#333' }}>
         {item.text}{' '}
-        <Link href={item.link.url} target="_blank" rel="noopener" underline="hover" sx={{ color: '#1976d2', fontWeight: 500 }}>
+        <Link href={item.link.url} target="_blank" rel="noopener" underline="hover" sx={{ color: '#1976d2', fontWeight: 600 }}>
           {item.link.label}
         </Link>
         {item.suffix}
@@ -47,7 +48,7 @@ function renderBioLine(item, idx) {
   )
 }
 
-const PublicationCard = ({ pub, index }) => (
+const PublicationCard = ({ pub }) => (
   <Paper elevation={0} sx={cardSx}>
     <Typography variant="h6" fontWeight={800} gutterBottom sx={{ lineHeight: 1.4, color: '#111' }}>
       {pub.title}
@@ -145,86 +146,148 @@ const ExperienceCard = ({ exp }) => (
   </Paper>
 )
 
+/* ── Sidebar ── */
+const Sidebar = () => (
+  <Box sx={{ position: { md: 'sticky' }, top: { md: 48 } }}>
+    <Avatar
+      src={avatarImg}
+      alt={profile.name}
+      sx={{
+        width: 160,
+        height: 160,
+        mb: 2.5,
+        border: '3px solid #eaeaea',
+        boxShadow: '0 4px 14px rgba(0,0,0,0.08)',
+      }}
+    />
+
+    <Typography variant="h4" fontWeight={800} sx={{ color: '#111', letterSpacing: '-0.01em' }}>
+      {profile.name}
+    </Typography>
+
+    <Typography variant="body2" color="text.secondary" sx={{ mt: 1, lineHeight: 1.6 }}>
+      Ph.D. Student
+    </Typography>
+    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
+      HKUST (Guangzhou)
+    </Typography>
+    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
+      Guangzhou, China
+    </Typography>
+
+    <Divider sx={{ my: 2.5 }} />
+
+    <Typography variant="h6" fontWeight={700} sx={{ mb: 1, color: '#111' }}>
+      Research
+    </Typography>
+    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>
+      World Models, Vision-Language-Action Models, 3D/4D Generation
+    </Typography>
+
+    <Divider sx={{ my: 2.5 }} />
+
+    <Typography variant="h6" fontWeight={700} sx={{ mb: 1.5, color: '#111' }}>
+      Links
+    </Typography>
+    <Stack spacing={1.2}>
+      <Link
+        href={`mailto:${profile.email}`}
+        underline="hover"
+        sx={{ display: 'flex', alignItems: 'center', gap: 0.8, color: '#1976d2', fontWeight: 500, fontSize: '0.9rem' }}
+      >
+        <EmailIcon sx={{ fontSize: 18 }} />
+        Email
+      </Link>
+      <Link
+        href={profile.github}
+        target="_blank"
+        rel="noopener"
+        underline="hover"
+        sx={{ display: 'flex', alignItems: 'center', gap: 0.8, color: '#1976d2', fontWeight: 500, fontSize: '0.9rem' }}
+      >
+        <GitHubIcon sx={{ fontSize: 18 }} />
+        GitHub
+      </Link>
+      <Link
+        href={profile.googleScholar}
+        target="_blank"
+        rel="noopener"
+        underline="hover"
+        sx={{ display: 'flex', alignItems: 'center', gap: 0.8, color: '#1976d2', fontWeight: 500, fontSize: '0.9rem' }}
+      >
+        <SchoolIcon sx={{ fontSize: 18 }} />
+        Google Scholar
+      </Link>
+      <Link
+        href="./cv"
+        target="_blank"
+        rel="noopener"
+        underline="hover"
+        sx={{ display: 'flex', alignItems: 'center', gap: 0.8, color: '#1976d2', fontWeight: 500, fontSize: '0.9rem' }}
+      >
+        <ArticleIcon sx={{ fontSize: 18 }} />
+        CV
+      </Link>
+    </Stack>
+  </Box>
+)
+
+/* ── Main App ── */
 const App = () => {
   return (
-    <Box sx={{ bgcolor: '#f4f5f6', minHeight: '100vh', py: 8 }}>
-      <Container maxWidth="md">
-        <Stack spacing={5}>
-          {/* Header */}
-          <Box>
-            <Typography variant="h2" fontWeight={800} sx={{ letterSpacing: '-0.02em', color: '#111' }}>
-              {profile.name}
-            </Typography>
-
-            <Stack direction="row" spacing={3} sx={{ mt: 2 }}>
-              <Link
-                href={`mailto:${profile.email}`}
-                underline="hover"
-                sx={{ display: 'flex', alignItems: 'center', gap: 0.5, color: '#1976d2', fontWeight: 500 }}
-              >
-                <EmailIcon sx={{ fontSize: 20 }} />
-                Email
-              </Link>
-              <Link
-                href={profile.github}
-                target="_blank"
-                rel="noopener"
-                underline="hover"
-                sx={{ display: 'flex', alignItems: 'center', gap: 0.5, color: '#1976d2', fontWeight: 500 }}
-              >
-                <GitHubIcon sx={{ fontSize: 20 }} />
-                GitHub
-              </Link>
-              <Link
-                href={profile.googleScholar}
-                target="_blank"
-                rel="noopener"
-                underline="hover"
-                sx={{ display: 'flex', alignItems: 'center', gap: 0.5, color: '#1976d2', fontWeight: 500 }}
-              >
-                <SchoolIcon sx={{ fontSize: 20 }} />
-                Google Scholar
-              </Link>
-              <Link
-                href="./cv"
-                target="_blank"
-                rel="noopener"
-                underline="hover"
-                sx={{ display: 'flex', alignItems: 'center', gap: 0.5, color: '#1976d2', fontWeight: 500 }}
-              >
-                <ArticleIcon sx={{ fontSize: 20 }} />
-                CV
-              </Link>
-            </Stack>
+    <Box sx={{ bgcolor: '#fafafa', minHeight: '100vh', py: { xs: 4, md: 8 } }}>
+      <Container maxWidth="lg">
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            gap: { xs: 4, md: 6 },
+          }}
+        >
+          {/* Left sidebar */}
+          <Box sx={{ width: { xs: '100%', md: 280 }, flexShrink: 0 }}>
+            <Sidebar />
           </Box>
 
-          {/* Bio */}
-          <Stack spacing={2}>{profile.bio.map(renderBioLine)}</Stack>
+          {/* Right main content */}
+          <Box sx={{ flex: 1, minWidth: 0 }}>
+            <Stack spacing={5}>
+              {/* Biography */}
+              <Box>
+                <Typography variant="h4" fontWeight={800} sx={{ mb: 2, pb: 1, borderBottom: '2px solid #333', color: '#111' }}>
+                  Biography
+                </Typography>
+                <Stack spacing={1.5}>
+                  {profile.bio.map(renderBioLine)}
+                </Stack>
+              </Box>
 
-          {/* Publications */}
-          <Box>
-            <Typography variant="h4" fontWeight={800} sx={{ mb: 2, pb: 1, borderBottom: '1px solid #eaeaea', color: '#111' }}>
-              Publications
-            </Typography>
-            <Stack spacing={2}>
-              {publications.map((pub, i) => (
-                <PublicationCard key={i} pub={pub} index={i} />
-              ))}
+              {/* Publications */}
+              <Box>
+                <Typography variant="h4" fontWeight={800} sx={{ mb: 2, pb: 1, borderBottom: '2px solid #333', color: '#111' }}>
+                  Publications
+                </Typography>
+                <Stack spacing={2}>
+                  {publications.map((pub, i) => (
+                    <PublicationCard key={i} pub={pub} />
+                  ))}
+                </Stack>
+              </Box>
+
+              {/* Experience */}
+              <Box>
+                <Typography variant="h4" fontWeight={800} sx={{ mb: 2, pb: 1, borderBottom: '2px solid #333', color: '#111' }}>
+                  Education &amp; Experience
+                </Typography>
+                <Stack spacing={2}>
+                  {experiences.map((exp, i) => (
+                    <ExperienceCard key={i} exp={exp} />
+                  ))}
+                </Stack>
+              </Box>
             </Stack>
           </Box>
-
-          {/* Experience */}
-          <Box>
-            <Typography variant="h4" fontWeight={800} sx={{ mb: 2, pb: 1, borderBottom: '1px solid #eaeaea', color: '#111' }}>
-              Experience
-            </Typography>
-            <Stack spacing={2}>
-              {experiences.map((exp, i) => (
-                <ExperienceCard key={i} exp={exp} />
-              ))}
-            </Stack>
-          </Box>
-        </Stack>
+        </Box>
       </Container>
     </Box>
   )
