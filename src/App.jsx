@@ -181,7 +181,7 @@ const Sidebar = () => (
       Research
     </Typography>
     <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>
-      Vision-Language-Action Models, World Models, 3D/4D Generation
+      Vision-Language-Action Models, World Models
     </Typography>
 
     <Divider sx={{ my: 2.5 }} />
