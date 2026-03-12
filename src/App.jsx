@@ -185,6 +185,16 @@ const App = () => {
                 <SchoolIcon sx={{ fontSize: 20 }} />
                 Google Scholar
               </Link>
+              <Link
+                href="./cv"
+                target="_blank"
+                rel="noopener"
+                underline="hover"
+                sx={{ display: 'flex', alignItems: 'center', gap: 0.5, color: '#1976d2', fontWeight: 500 }}
+              >
+                <ArticleIcon sx={{ fontSize: 20 }} />
+                CV
+              </Link>
             </Stack>
           </Box>
 

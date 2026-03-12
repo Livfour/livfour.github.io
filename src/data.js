@@ -10,7 +10,7 @@ export const profile = {
       suffix: '.',
     },
     {
-      text: 'My research interests lie in **Humanoid Robotics** and **Vision-Language-Action (VLA) Models**. I am passionate about building embodied agents that can understand the physical world and perform complex tasks',
+      text: 'My research interests lie in **World Models** and **Vision-Language-Action (VLA) Models**. I am passionate about building embodied agents that can understand the physical world and perform complex tasks',
     },
     {
       text: 'I am always open to research collaborations. Please feel free to reach out if you are interested in working together!',
@@ -32,7 +32,7 @@ export const publications = [
   {
     authors: 'Haodong Yan, Hang Yu, Zhide Zhong, Weilin Yuan, Xin Gong, Zehang Luo, Chengxi Heyu, Junfeng Li, Wenxuan Song, Shunbo Zhou, Haoang Li.',
     title: 'Open-world Hand-Object Interaction Video Generation Based on Structure and Contact-aware Representation',
-    venue: 'arXiv preprint arXiv:2512.01677, 2025.',
+    venue: 'IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2025.',
     paper: 'https://arxiv.org/abs/2512.01677',
   },
 ]

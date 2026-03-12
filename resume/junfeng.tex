@@ -1,0 +1,264 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{hyphenat}
+\usepackage{fontawesome}
+\input{glyphtounicode}
+
+
+%---------- FONT OPTIONS ----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+
+\newcommand{\resumeSubSubheading}[2]{
+    \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+
+\newcommand{\resumeEducationHeading}[6]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      {\small#3} & \textit{\small #4} \\
+      {\small#5}  \\
+      % {\small#6}  \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeEducationHeadingnew}[6]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      {\small#3} & \textit{\small #4} \\
+      {\small#5}  \\
+      {\small#6}  \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+
+\newcommand{\resumeProjectHeading}[2]{
+    \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumePublicationsHeading}[2]{
+    \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+
+\newcommand{\resumeOrganizationHeading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textit{\small #2} \\
+      \textit{\small#3}
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%---------- HEADING ----------
+
+\begin{center}
+    \textbf{\Large \scshape Junfeng Li} \\ \vspace{3pt}
+    \small
+    \faMobile \hspace{.5pt} \href{17683881879}{17683881879}
+    $|$
+    \faAt \hspace{.5pt} \href{junfeng1287@gmail.com}{junfeng1287@gmail.com}
+    $|$
+    \faGithub \hspace{.5pt} \href{https://github.com/Livfour}{GitHub}
+    $|$
+    \faGraduationCap \hspace{.5pt} \href{https://scholar.google.com/citations?user=X4wV9ucAAAAJ}{Google Scholar}
+\end{center}
+
+\vspace{-5pt}
+\begin{center}
+    \small
+    Research Interests: \textbf{World Models} and \textbf{Vision-Language-Action (VLA) Models}.
+\end{center}
+
+%----------- EDUCATION & EXPERIENCE -----------
+
+\section{Education \& Experience}
+  \vspace{3pt}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+        {Hong Kong University of Science and Technology (Guangzhou)}{Guangzhou, China}
+        {Ph.D. Student (Supervised by Prof. \href{https://sites.google.com/view/haoangli/homepage}{Haoang Li})}{Sep. 2025 \textbf{--} Present}
+        \resumeItemListStart
+            \resumeItem{Research focus on World Models and Vision-Language-Action (VLA) Models, building embodied agents that can understand the physical world and perform complex tasks.}
+        \resumeItemListEnd
+
+    \resumeSubheading
+        {Hong Kong University of Science and Technology (Guangzhou)}{Guangzhou, China}
+        {Research Assistant (with Prof. \href{https://sites.google.com/view/haoangli/homepage}{Haoang Li})}{Jun. 2024 \textbf{--} Apr. 2025}
+        \resumeItemListStart
+            \resumeItem{Designed and implemented algorithms for dynamic 3D/4D scene generation, with a focus on scene understanding, Gaussian-based representations, and generative modeling.}
+        \resumeItemListEnd
+
+    \resumeEducationHeadingnew
+        {University College London}{London, United Kingdom}
+        {Master of Science in Computer Science}
+        {Sep. 2022 \textbf{--} Dec. 2023}
+        {awarded \textit{with Distinction}}
+        {\textbf{GPA: 3.75/4.25}}
+        \vspace{3pt}
+        
+    \resumeEducationHeadingnew
+        {University of Birmingham}{Birmingham, United Kingdom} 
+        {Bachelor of Engineering in Mechanical Engineering}
+        {Sep. 2019 \textbf{--} Jul. 2021}
+        {awarded \textit{with Honours, Class I}}
+        {\textbf{GPA: 3.75/4.25}}
+        \vspace{3pt}
+        
+    \resumeEducationHeading
+      {Wuhan University of Technology }{Wuhan, China} 
+      {Bachelor of Engineering in Mechanical Engineering}
+      {Sep. 2017 \textbf{--} Jun. 2019}
+      {\textbf{GPA: 84/100}}
+
+  \resumeSubHeadingListEnd
+
+% ----------- PUBLICATIONS -----------
+
+\section{Publications}
+  \vspace{3pt}
+  \begin{small}
+  \begin{itemize}
+    \item[\textbf{[1]}] \underline{Junfeng Li*}, Junjie He*, Wenjie Liu*, Tianyu Huang,
+      Shunbo Zhou, Jun Ma, Hesheng Wang, and Haoang Li,
+      ``SCSV: Spatial-temporal Consistent Dynamic 3D Scene Generation from Sparse Views,''
+      \textit{IEEE Transactions on Image Processing (\textbf{TIP})}, 2025.
+
+    \item[\textbf{[2]}] Zhide Zhong, Haodong Yan, \underline{Junfeng Li}, Xiangchen Liu,
+      Xin Gong, Tianran Zhang, Wenxuan Song, Jiayi Chen, Xinhu Zheng, Hesheng Wang, Haoang Li,
+      ``FlowVLA: Visual Chain of Thought-based Motion Reasoning for Vision-Language-Action Models,''
+      \textit{arXiv preprint arXiv:2508.18269}, 2025.
+
+    \item[\textbf{[3]}] Haodong Yan, Hang Yu, Zhide Zhong, Weilin Yuan, Xin Gong,
+      Zehang Luo, Chengxi Heyu, \underline{Junfeng Li}, Wenxuan Song, Shunbo Zhou, Haoang Li,
+      ``Open-world Hand-Object Interaction Video Generation Based on Structure and Contact-aware Representation,''
+      \textit{IEEE/CVF Conference on Computer Vision and Pattern Recognition (\textbf{CVPR})}, 2025.
+  \end{itemize}
+  \end{small}
+
+
+
+%----------- SKILLS -----------
+
+\section{Skills}
+  \vspace{2pt}
+  \resumeSubHeadingListStart
+    \small{\item{
+        
+        \textbf{Programming Languages: }{Python, JavaScript/TypeScript, HTML, CSS.} \\ \vspace{3pt}
+        
+        \textbf{ML/AI Frameworks: }{PyTorch, Hugging Face Transformers, DeepSpeed, vLLM.} \\ \vspace{3pt}
+
+        \textbf{AI-Assisted Development: }{Proficient in AI coding tools (Claude Code, Codex, Cursor) and multi-agent orchestrated project development.} \\ \vspace{3pt}
+
+        \textbf{DevOps \& Tools: }{Linux, Slurm, Git, Docker.}
+        
+    }}
+  \resumeSubHeadingListEnd
+
+
+\section{Language}
+  \vspace{2pt}
+  \resumeSubHeadingListStart
+    \small{\item{
+        
+        \textbf{English: }{Fluent (IELTS 7.0).} \\ \vspace{3pt}
+        
+        \textbf{Mandarin: }{Native.} \\ \vspace{3pt}
+        
+    }}
+  \resumeSubHeadingListEnd
+
+\end{document}
