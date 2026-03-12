@@ -41,7 +41,7 @@ export const publications = [
       "FlowVLA: Visual Chain of Thought-based Motion Reasoning for Vision-Language-Action Models",
     authors:
       "Zhide Zhong, Haodong Yan, Junfeng Li, Xiangchen Liu, Xin Gong, Tianran Zhang, Wenxuan Song, Jiayi Chen, Xinhu Zheng, Hesheng Wang, Haoang Li",
-    venue: "Submitted to IEEE Transactions on Robotics (T-RO)",
+    venue: "arXiv preprint arXiv:2508.18269, 2025.",
     paper: "https://arxiv.org/abs/2508.18269",
     home_page: "https://irpn-lab.github.io/FlowVLA/",
   },
