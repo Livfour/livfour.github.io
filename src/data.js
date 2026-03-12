@@ -32,6 +32,7 @@ export const publications = [
     title: 'FlowVLA: Visual Chain of Thought-based Motion Reasoning for Vision-Language-Action Models',
     venue: 'arXiv preprint arXiv:2508.18269, 2025.',
     paper: 'https://arxiv.org/abs/2508.18269',
+    home_page: 'https://irpn-lab.github.io/FlowVLA/',
   },
   {
     authors: 'Haodong Yan, Hang Yu, Zhide Zhong, Weilin Yuan, Xin Gong, Zehang Luo, Chengxi Heyu, Junfeng Li, Wenxuan Song, Shunbo Zhou, Haoang Li',
