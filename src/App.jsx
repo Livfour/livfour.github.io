@@ -6,10 +6,8 @@ import {
   Typography,
   Paper,
   Link,
-  IconButton,
-  Tooltip,
   Avatar,
-  Divider,
+  useTheme,
 } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -19,34 +17,129 @@ import HomeIcon from "@mui/icons-material/Home";
 import { profile, publications, experiences } from "./data";
 import avatarImg from "./assets/avatar.jpg";
 
-const cardSx = {
-  p: 3,
-  bgcolor: "#fff",
-  borderRadius: 2,
-  border: "1px solid #eaeaea",
-  boxShadow: "0 1px 3px rgba(0,0,0,0.02)",
-  transition: "all 0.3s ease",
-  "&:hover": {
-    transform: "translateY(-1px)",
-    boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
-  },
-};
+const REL_EXTERNAL = "noopener noreferrer";
 
-function renderBioLine(item, idx) {
+function useColors() {
+  const theme = useTheme();
+  return {
+    bg: theme.palette.background.default,
+    paper: theme.palette.background.paper,
+    ink: theme.palette.text.primary,
+    sub: theme.palette.text.secondary,
+    muted: "#8a8377",
+    red: theme.palette.primary.main,
+    amber: theme.palette.secondary.main,
+    gold: "#b8943e",
+    rule: theme.palette.text.primary,
+    ruleLight: theme.palette.divider,
+    cardBorder: "rgba(26, 26, 24, 0.25)",
+    cardHover: "rgba(194, 69, 45, 0.03)",
+  };
+}
+
+function makeStyles(C) {
+  return {
+    card: {
+      p: 2.5,
+      bgcolor: C.paper,
+      borderRadius: 0,
+      border: `1px solid ${C.cardBorder}`,
+      boxShadow: "none",
+      transition: "background 0.25s, border-color 0.25s",
+      position: "relative",
+      "&:hover": {
+        bgcolor: C.cardHover,
+        borderColor: "rgba(194, 69, 45, 0.4)",
+      },
+    },
+    sectionHeading: {
+      color: C.red,
+      fontWeight: 700,
+      textTransform: "uppercase",
+      letterSpacing: "0.08em",
+      fontSize: { xs: "0.85rem", md: "0.9rem" },
+      mb: 2,
+      pb: 1,
+      borderBottom: `2px solid ${C.rule}`,
+    },
+    tagPill: {
+      display: "inline-block",
+      fontSize: "0.7rem",
+      fontWeight: 700,
+      letterSpacing: "0.06em",
+      textTransform: "uppercase",
+      color: C.amber,
+      lineHeight: 1.5,
+    },
+  };
+}
+
+function punkBtn(color, paperColor) {
+  return {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 0.5,
+    px: 1.2,
+    py: 0.4,
+    fontSize: "0.65rem",
+    fontWeight: 700,
+    letterSpacing: "0.1em",
+    textTransform: "uppercase",
+    textDecoration: "none",
+    color,
+    border: `1px solid ${color}`,
+    borderRadius: 0,
+    lineHeight: 1,
+    transition: "all 0.2s",
+    "&:hover": { bgcolor: color, color: paperColor },
+  };
+}
+
+function parseBoldMarkdown(text) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.length > 4 && part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={i}>{part.slice(2, -2)}</strong>;
+    }
+    return part;
+  });
+}
+
+function RenderBioLine({ item }) {
+  const C = useColors();
+
+  if (item.segments) {
+    return (
+      <Typography variant="body1" sx={{ lineHeight: 1.8, color: C.ink }}>
+        {item.segments.map((seg, i) =>
+          seg.link ? (
+            <Link
+              key={i}
+              href={seg.url}
+              target="_blank"
+              rel={REL_EXTERNAL}
+              underline="hover"
+              sx={{ color: C.red, fontWeight: 600 }}
+            >
+              {seg.link}
+            </Link>
+          ) : (
+            <span key={i}>{seg.text}</span>
+          ),
+        )}
+      </Typography>
+    );
+  }
   if (item.link) {
     return (
-      <Typography
-        key={idx}
-        variant="body1"
-        sx={{ lineHeight: 1.8, color: "#333" }}
-      >
+      <Typography variant="body1" sx={{ lineHeight: 1.8, color: C.ink }}>
         {item.text}{" "}
         <Link
           href={item.link.url}
           target="_blank"
-          rel="noopener"
+          rel={REL_EXTERNAL}
           underline="hover"
-          sx={{ color: "#1976d2", fontWeight: 600 }}
+          sx={{ color: C.red, fontWeight: 600 }}
         >
           {item.link.label}
         </Link>
@@ -54,305 +147,218 @@ function renderBioLine(item, idx) {
       </Typography>
     );
   }
-
-  const parts = item.text.split(/(\*\*.*?\*\*)/);
   return (
-    <Typography
-      key={idx}
-      variant="body1"
-      sx={{ lineHeight: 1.8, color: "#333" }}
-    >
-      {parts.map((part, i) =>
-        part.startsWith("**") && part.endsWith("**") ? (
-          <strong key={i} style={{ color: "#111" }}>
-            {part.slice(2, -2)}
-          </strong>
-        ) : (
-          part
-        ),
-      )}
+    <Typography variant="body1" sx={{ lineHeight: 1.8, color: C.ink }}>
+      {parseBoldMarkdown(item.text)}
     </Typography>
   );
 }
 
-const PublicationCard = ({ pub }) => (
-  <Paper elevation={0} sx={cardSx}>
-    <Typography
-      variant="h6"
-      fontWeight={800}
-      gutterBottom
-      sx={{ lineHeight: 1.4, color: "#111" }}
+const PublicationCard = ({ pub }) => {
+  const C = useColors();
+  const styles = makeStyles(C);
+  const cardLink = pub.home_page || pub.paper;
+
+  const handleClick = (e) => {
+    if (!cardLink) return;
+    if (e.target.closest("a")) return;
+    window.open(cardLink, "_blank", REL_EXTERNAL);
+  };
+
+  return (
+    <Paper
+      elevation={0}
+      sx={{ ...styles.card, cursor: cardLink ? "pointer" : "default" }}
+      onClick={handleClick}
+      role={cardLink ? "link" : undefined}
     >
-      {pub.title}
-    </Typography>
-    <Typography
-      variant="body1"
-      gutterBottom
-      sx={{ lineHeight: 1.7, color: "#424242", mt: 1 }}
-    >
-      {pub.authors.split(profile.name).flatMap((segment, i, arr) =>
-        i < arr.length - 1
-          ? [
-              segment,
-              <strong key={i} style={{ color: "#111" }}>
-                {profile.name}
-              </strong>,
-            ]
-          : [segment],
-      )}
-    </Typography>
-    <Stack
-      direction="row"
-      alignItems="center"
-      justifyContent="space-between"
-      sx={{ mt: 1.5 }}
-    >
-      <Typography
-        variant="body2"
-        fontStyle="italic"
-        color="text.secondary"
-        sx={{ fontWeight: 500 }}
-      >
-        {pub.venue}
+      <Typography variant="h6" fontWeight={700} gutterBottom sx={{ lineHeight: 1.4, color: C.ink }}>
+        {pub.title}
       </Typography>
-      <Stack direction="row" spacing={1}>
-        {pub.home_page && (
-          <Tooltip title="Project Page">
-            <IconButton
+      <Typography variant="body2" gutterBottom sx={{ lineHeight: 1.7, color: C.sub, mt: 0.5 }}>
+        {pub.authors.split(profile.name).flatMap((seg, i, arr) =>
+          i < arr.length - 1
+            ? [seg, <strong key={i} style={{ color: C.red }}>{profile.name}</strong>]
+            : [seg],
+        )}
+      </Typography>
+      <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mt: 1.5 }}>
+        <Box sx={styles.tagPill}>{pub.venue}</Box>
+        <Stack direction="row" spacing={1}>
+          {pub.home_page && (
+            <Box
               component="a"
               href={pub.home_page}
               target="_blank"
-              rel="noopener"
-              size="small"
-              sx={{
-                color: "#1976d2",
-                bgcolor: "rgba(25, 118, 210, 0.08)",
-                "&:hover": { bgcolor: "rgba(25, 118, 210, 0.15)" },
-              }}
+              rel={REL_EXTERNAL}
+              onClick={(e) => e.stopPropagation()}
+              sx={punkBtn(C.red, C.paper)}
             >
-              <HomeIcon fontSize="small" />
-            </IconButton>
-          </Tooltip>
-        )}
-        {pub.paper && (
-          <Tooltip title="Paper">
-            <IconButton
+              <HomeIcon sx={{ fontSize: 14 }} />
+              Project
+            </Box>
+          )}
+          {pub.paper && (
+            <Box
               component="a"
               href={pub.paper}
               target="_blank"
-              rel="noopener"
-              size="small"
-              sx={{
-                color: "#d32f2f",
-                bgcolor: "rgba(211, 47, 47, 0.08)",
-                "&:hover": { bgcolor: "rgba(211, 47, 47, 0.15)" },
-              }}
+              rel={REL_EXTERNAL}
+              onClick={(e) => e.stopPropagation()}
+              sx={punkBtn(C.amber, C.paper)}
             >
-              <ArticleIcon fontSize="small" />
-            </IconButton>
-          </Tooltip>
-        )}
-        {pub.github && (
-          <Tooltip title="Code">
-            <IconButton
+              <ArticleIcon sx={{ fontSize: 14 }} />
+              Paper
+            </Box>
+          )}
+          {pub.github && (
+            <Box
               component="a"
               href={pub.github}
               target="_blank"
-              rel="noopener"
-              size="small"
-              sx={{
-                color: "#333",
-                bgcolor: "rgba(0, 0, 0, 0.05)",
-                "&:hover": { bgcolor: "rgba(0, 0, 0, 0.1)" },
-              }}
+              rel={REL_EXTERNAL}
+              onClick={(e) => e.stopPropagation()}
+              sx={punkBtn(C.ink, C.paper)}
             >
-              <GitHubIcon fontSize="small" />
-            </IconButton>
-          </Tooltip>
-        )}
+              <GitHubIcon sx={{ fontSize: 14 }} />
+              Code
+            </Box>
+          )}
+        </Stack>
       </Stack>
-    </Stack>
-  </Paper>
-);
+    </Paper>
+  );
+};
 
-const ExperienceCard = ({ exp }) => (
-  <Paper elevation={0} sx={cardSx}>
-    <Stack
-      direction="row"
-      justifyContent="space-between"
-      alignItems="baseline"
-      sx={{ mb: 1 }}
-    >
-      <Typography variant="body1" fontWeight={700}>
-        {exp.role}
-      </Typography>
-      <Typography
-        variant="body2"
-        fontStyle="italic"
-        color="text.secondary"
-        sx={{ flexShrink: 0, ml: 2 }}
-      >
-        {exp.period}
-      </Typography>
-    </Stack>
-    <Stack
-      direction="row"
-      justifyContent="space-between"
-      alignItems="baseline"
-      sx={{ mb: 1 }}
-    >
-      <Link
-        variant="body1"
-        href={exp.institutionUrl}
-        target="_blank"
-        rel="noopener"
-        underline="hover"
-        sx={{ fontWeight: 700, color: "#1976d2" }}
-      >
-        {exp.institution}
-      </Link>
-      <Typography
-        variant="body2"
-        fontStyle="italic"
-        color="text.secondary"
-        sx={{ flexShrink: 0, ml: 2 }}
-      >
-        {exp.location}
-      </Typography>
-    </Stack>
-    <Typography variant="body2" color="text.secondary">
-      {exp.note}
-    </Typography>
-  </Paper>
-);
+const ExperienceCard = ({ exp }) => {
+  const C = useColors();
+  const styles = makeStyles(C);
 
-/* ── Sidebar ── */
-const Sidebar = () => (
-  <Box sx={{ position: { md: "sticky" }, top: { md: 48 } }}>
-    <Avatar
-      src={avatarImg}
-      alt={profile.name}
-      sx={{
-        width: 160,
-        height: 160,
-        mb: 2.5,
-        border: "3px solid #eaeaea",
-        boxShadow: "0 4px 14px rgba(0,0,0,0.08)",
-      }}
-    />
-
-    <Typography
-      variant="h4"
-      fontWeight={800}
-      sx={{ color: "#111", letterSpacing: "-0.01em" }}
-    >
-      {profile.name}
-    </Typography>
-
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      sx={{ mt: 1, lineHeight: 1.6 }}
-    >
-      Ph.D. Student
-    </Typography>
-    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
-      HKUST (Guangzhou)
-    </Typography>
-    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
-      Guangzhou, China
-    </Typography>
-
-    <Divider sx={{ my: 2.5 }} />
-
-    <Typography variant="h6" fontWeight={700} sx={{ mb: 1, color: "#111" }}>
-      Research
-    </Typography>
-    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>
-      Vision-Language-Action Models, World Models
-    </Typography>
-
-    <Divider sx={{ my: 2.5 }} />
-
-    <Typography variant="h6" fontWeight={700} sx={{ mb: 1.5, color: "#111" }}>
-      Links
-    </Typography>
-    <Stack spacing={1.2}>
-      <Link
-        href={`mailto:${profile.email}`}
-        underline="hover"
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: 0.8,
-          color: "#1976d2",
-          fontWeight: 500,
-          fontSize: "0.9rem",
-        }}
-      >
-        <EmailIcon sx={{ fontSize: 18 }} />
-        Email
-      </Link>
-      <Link
-        href={profile.github}
-        target="_blank"
-        rel="noopener"
-        underline="hover"
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: 0.8,
-          color: "#1976d2",
-          fontWeight: 500,
-          fontSize: "0.9rem",
-        }}
-      >
-        <GitHubIcon sx={{ fontSize: 18 }} />
-        GitHub
-      </Link>
-      <Link
-        href={profile.googleScholar}
-        target="_blank"
-        rel="noopener"
-        underline="hover"
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: 0.8,
-          color: "#1976d2",
-          fontWeight: 500,
-          fontSize: "0.9rem",
-        }}
-      >
-        <SchoolIcon sx={{ fontSize: 18 }} />
-        Google Scholar
-      </Link>
-      <Link
-        href="./cv"
-        target="_blank"
-        rel="noopener"
-        underline="hover"
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: 0.8,
-          color: "#1976d2",
-          fontWeight: 500,
-          fontSize: "0.9rem",
-        }}
-      >
-        <ArticleIcon sx={{ fontSize: 18 }} />
-        CV
-      </Link>
-    </Stack>
-  </Box>
-);
-
-/* ── Main App ── */
-const App = () => {
   return (
-    <Box sx={{ bgcolor: "#fafafa", minHeight: "100vh", py: { xs: 4, md: 8 } }}>
-      <Container maxWidth="lg">
+    <Paper elevation={0} sx={styles.card}>
+      <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ mb: 0.5 }}>
+        <Typography variant="body1" fontWeight={700} sx={{ color: C.ink }}>
+          {exp.role}
+        </Typography>
+        <Typography variant="body2" sx={{ flexShrink: 0, ml: 2, color: C.muted, fontWeight: 500 }}>
+          {exp.period}
+        </Typography>
+      </Stack>
+      <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ mb: 0.5 }}>
+        <Link
+          variant="body1"
+          href={exp.institutionUrl}
+          target="_blank"
+          rel={REL_EXTERNAL}
+          underline="hover"
+          sx={{ fontWeight: 600, color: C.red }}
+        >
+          {exp.institution}
+        </Link>
+        <Typography variant="body2" sx={{ flexShrink: 0, ml: 2, color: C.muted }}>
+          {exp.location}
+        </Typography>
+      </Stack>
+      <Typography variant="body2" sx={{ color: C.sub, mt: 0.5 }}>
+        {exp.note}
+      </Typography>
+    </Paper>
+  );
+};
+
+const Sidebar = () => {
+  const C = useColors();
+
+  return (
+    <Box sx={{ position: { md: "sticky" }, top: { md: 48 } }}>
+      <Box
+        sx={{
+          width: 200,
+          height: 200,
+          mb: 2.5,
+          border: `1.5px solid ${C.rule}`,
+          overflow: "hidden",
+        }}
+      >
+        <Avatar
+          src={avatarImg}
+          alt={profile.name}
+          variant="square"
+          sx={{ width: "100%", height: "100%" }}
+        />
+      </Box>
+
+      <Typography variant="h4" fontWeight={800} sx={{ color: C.ink }}>
+        {profile.name}
+      </Typography>
+
+      <Stack spacing={0.2} sx={{ mt: 1 }}>
+        <Typography variant="body2" sx={{ color: C.sub }}>{profile.title}</Typography>
+        <Typography variant="body2" sx={{ color: C.sub }}>{profile.affiliation}</Typography>
+        <Typography variant="body2" sx={{ color: C.sub }}>{profile.location}</Typography>
+      </Stack>
+
+      <Box sx={{ my: 2.5, height: "2px", bgcolor: C.rule }} />
+
+      <Typography
+        variant="body2"
+        sx={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: C.red, mb: 0.8 }}
+      >
+        Research
+      </Typography>
+      <Typography variant="body2" sx={{ color: C.sub, lineHeight: 1.7 }}>
+        {profile.researchInterests}
+      </Typography>
+
+      <Box sx={{ my: 2.5, height: "2px", bgcolor: C.rule }} />
+
+      <Typography
+        variant="body2"
+        sx={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: C.red, mb: 1.2 }}
+      >
+        Links
+      </Typography>
+      <Stack spacing={1}>
+        {[
+          { href: `mailto:${profile.email}`, icon: <EmailIcon sx={{ fontSize: 17 }} />, label: "Email" },
+          { href: profile.github, icon: <GitHubIcon sx={{ fontSize: 17 }} />, label: "GitHub", ext: true },
+          { href: profile.googleScholar, icon: <SchoolIcon sx={{ fontSize: 17 }} />, label: "Google Scholar", ext: true },
+          { href: "./cv", icon: <ArticleIcon sx={{ fontSize: 17 }} />, label: "CV", ext: true },
+        ].map(({ href, icon, label, ext }) => (
+          <Link
+            key={label}
+            href={href}
+            {...(ext ? { target: "_blank", rel: REL_EXTERNAL } : {})}
+            underline="none"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 0.8,
+              color: C.ink,
+              fontWeight: 500,
+              fontSize: "0.88rem",
+              transition: "color 0.2s",
+              "&:hover": { color: C.red },
+            }}
+          >
+            {icon}
+            {label}
+          </Link>
+        ))}
+      </Stack>
+    </Box>
+  );
+};
+
+const App = () => {
+  const C = useColors();
+  const styles = makeStyles(C);
+
+  return (
+    <Box sx={{ bgcolor: C.bg, minHeight: "100vh" }}>
+      <Box sx={{ height: "3px", bgcolor: C.red }} />
+
+      <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
         <Box
           sx={{
             display: "flex",
@@ -360,69 +366,50 @@ const App = () => {
             gap: { xs: 4, md: 6 },
           }}
         >
-          {/* Left sidebar */}
-          <Box sx={{ width: { xs: "100%", md: 280 }, flexShrink: 0 }}>
+          <Box sx={{ width: { xs: "100%", md: 260 }, flexShrink: 0 }}>
             <Sidebar />
           </Box>
 
-          {/* Right main content */}
+          <Box
+            sx={{
+              display: { xs: "none", md: "block" },
+              width: "1px",
+              bgcolor: C.ruleLight,
+              flexShrink: 0,
+            }}
+          />
+
           <Box sx={{ flex: 1, minWidth: 0 }}>
             <Stack spacing={5}>
-              {/* Biography */}
               <Box>
-                <Typography
-                  variant="h4"
-                  fontWeight={800}
-                  sx={{
-                    mb: 2,
-                    pb: 1,
-                    borderBottom: "2px solid #333",
-                    color: "#111",
-                  }}
-                >
+                <Typography variant="h5" sx={styles.sectionHeading}>
                   Biography
                 </Typography>
-                <Stack spacing={1.5}>{profile.bio.map(renderBioLine)}</Stack>
-              </Box>
-
-              {/* Publications */}
-              <Box>
-                <Typography
-                  variant="h4"
-                  fontWeight={800}
-                  sx={{
-                    mb: 2,
-                    pb: 1,
-                    borderBottom: "2px solid #333",
-                    color: "#111",
-                  }}
-                >
-                  Publications &amp; Research Experience
-                </Typography>
-                <Stack spacing={2}>
-                  {publications.map((pub, i) => (
-                    <PublicationCard key={i} pub={pub} />
+                <Stack spacing={1.5}>
+                  {profile.bio.map((item, idx) => (
+                    <RenderBioLine key={idx} item={item} />
                   ))}
                 </Stack>
               </Box>
 
-              {/* Experience */}
               <Box>
-                <Typography
-                  variant="h4"
-                  fontWeight={800}
-                  sx={{
-                    mb: 2,
-                    pb: 1,
-                    borderBottom: "2px solid #333",
-                    color: "#111",
-                  }}
-                >
+                <Typography variant="h5" sx={styles.sectionHeading}>
+                  Publications &amp; Research
+                </Typography>
+                <Stack spacing={1.5}>
+                  {publications.map((pub) => (
+                    <PublicationCard key={pub.title} pub={pub} />
+                  ))}
+                </Stack>
+              </Box>
+
+              <Box>
+                <Typography variant="h5" sx={styles.sectionHeading}>
                   Education &amp; Experience
                 </Typography>
-                <Stack spacing={2}>
-                  {experiences.map((exp, i) => (
-                    <ExperienceCard key={i} exp={exp} />
+                <Stack spacing={1.5}>
+                  {experiences.map((exp) => (
+                    <ExperienceCard key={`${exp.role}-${exp.period}`} exp={exp} />
                   ))}
                 </Stack>
               </Box>
@@ -430,6 +417,16 @@ const App = () => {
           </Box>
         </Box>
       </Container>
+
+      <Box sx={{ borderTop: `2px solid ${C.rule}`, py: 2, mt: 4 }}>
+        <Typography
+          variant="body2"
+          align="center"
+          sx={{ color: C.muted, letterSpacing: "0.06em", fontSize: "0.75rem", textTransform: "uppercase" }}
+        >
+          &copy; {new Date().getFullYear()} {profile.name} &mdash; All Rights Reserved
+        </Typography>
+      </Box>
     </Box>
   );
 };

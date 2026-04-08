@@ -1,7 +1,24 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #fafafa;
+  background: #f0ebe3;
+  color: #1a1a18;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scrollbar-color: #c2a882 #e8e2d8;
+  scrollbar-width: thin;
+}
+
+#root {
+  position: relative;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #e8e2d8; }
+::-webkit-scrollbar-thumb {
+  background: #c2a882;
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a88c66;
 }

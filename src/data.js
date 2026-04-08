@@ -1,16 +1,33 @@
+const _e = [106, 117, 110, 102, 101, 110, 103, 49, 50, 56, 55];
+const _d = [103, 109, 97, 105, 108, 46, 99, 111, 109];
+
 export const profile = {
   name: "Junfeng Li",
-  email: "junfeng1287@gmail.com",
+  get email() {
+    return String.fromCharCode(..._e) + "@" + String.fromCharCode(..._d);
+  },
   github: "https://github.com/Livfour",
-  googleScholar: "https://scholar.google.com/citations?user=X4wV9ucAAAAJ",
+  googleScholar:
+    "https://scholar.google.com/citations?user=X4wV9ucAAAAJ",
+  title: "Ph.D. Student",
+  affiliation: "HKUST (Guangzhou)",
+  location: "Guangzhou, China",
+  researchInterests: "Vision-Language-Action Models, World Models",
   bio: [
     {
-      text: "I am currently a Ph.D. student at",
-      link: {
-        label: "Hong Kong University of Science and Technology (Guangzhou)",
-        url: "https://www.hkust-gz.edu.cn/",
-      },
-      suffix: ".",
+      segments: [
+        { text: "I am currently a Ph.D. student at " },
+        {
+          link: "Hong Kong University of Science and Technology (Guangzhou)",
+          url: "https://www.hkust-gz.edu.cn/",
+        },
+        { text: ", supervised by " },
+        {
+          link: "Prof. Haoang Li",
+          url: "https://sites.google.com/view/haoangli/homepage",
+        },
+        { text: "." },
+      ],
     },
     {
       text: "My research interests lie in **Vision-Language-Action (VLA) Models** and **World Models**. I am passionate about building embodied agents that can understand the physical world and perform complex tasks.",
@@ -27,14 +44,18 @@ export const publications = [
       "DualCoT-VLA: Visual-Linguistic Chain of Thought via Parallel Reasoning for Vision-Language-Action Models",
     authors:
       "Zhide Zhong*, Junfeng Li*, Junjie He, Haodong Yan, Xin Gong, Guanyi Zhao, Yingjie Cai, Jiantao Gao, Xu Yan, Bingbing Liu, Yingcong Chen, Liuqing Yang, Haoang Li",
-    venue: "Under Review",
+    venue: "arXiv preprint arXiv:2603.22280, 2026.",
+    paper: "https://arxiv.org/abs/2603.22280",
+    home_page: "https://livfour.github.io/DualCoT-VLA/",
   },
   {
     title:
       "VLA-OPD: Bridging Offline SFT and Online RL for Vision-Language-Action Models via On-Policy Distillation",
     authors:
       "Zhide Zhong, Haodong Yan, Junfeng Li, Junjie He, Tianran Zhang, Haoang Li",
-    venue: "Under Review",
+    venue: "arXiv preprint arXiv:2603.26666, 2026.",
+    paper: "https://arxiv.org/abs/2603.26666",
+    home_page: "https://irpn-lab.github.io/VLA-OPD/",
   },
   {
     title:
@@ -67,7 +88,8 @@ export const experiences = [
   {
     role: "Ph.D. Student",
     period: "Sep. 2025 – Present",
-    institution: "Hong Kong University of Science and Technology (Guangzhou)",
+    institution:
+      "Hong Kong University of Science and Technology (Guangzhou)",
     institutionUrl: "https://www.hkust-gz.edu.cn/",
     location: "Guangzhou, China",
     note: "Supervised by Prof. Haoang Li.",
@@ -75,7 +97,8 @@ export const experiences = [
   {
     role: "Research Assistant",
     period: "Jun. 2024 – Apr. 2025",
-    institution: "Hong Kong University of Science and Technology (Guangzhou)",
+    institution:
+      "Hong Kong University of Science and Technology (Guangzhou)",
     institutionUrl: "https://www.hkust-gz.edu.cn/",
     location: "Guangzhou, China",
     note: "Supervised by Prof. Haoang Li.",
