@@ -17,7 +17,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "predeploy": "make resume && npm run build",
-    "deploy": "gh-pages -d build -r git@github.com:Livfour/junfeng_li.git -b gh-pages"
+    "deploy": "gh-pages -d build -r git@github.com:Livfour/livfour.github.io.git -b gh-pages"
   },
   "browserslist": {
     "production": [

@@ -41,10 +41,45 @@ export const profile = {
 export const publications = [
   {
     title:
+      "DyPES-VLA: Learning Shared Dynamics Priors and Embodiment-Specific Control for Cross-Embodiment Manipulation",
+    authors:
+      "Junfeng Li*, Junjie He*, Zhide Zhong*, Yangyang Zheng*, Pingyue Sheng, Jiayu Dong, Ruixin Li, Haodong Yan, Jiaguan Zhu, Tianran Zhang, Runze Yu, Wen Chen, Liuqing Yang, Yuxiang Gao, Haoang Li",
+    venue: "arXiv preprint arXiv:2608.06374, 2026.",
+    paper: "https://arxiv.org/abs/2608.06374",
+    home_page: "https://livfour.github.io/DyPES-VLA_RELEASE/",
+  },
+  {
+    title:
+      "Robust-WAM: Bridging Generative Pretraining and Semantic Foresight in World-Action Models",
+    authors:
+      "Haodong Yan*, Junfeng Li*, Junjie He*, Zhide Zhong, MingMing Yu, Wenxuan Song, Jiaguan Zhu, Yangyang Zheng, Yuqiao Du, Jiadi You, Yingjie Cai, Xu Yan, Guanyi Zhao, Bingbing Liu, Haoang Li",
+    venue: "arXiv preprint arXiv:2608.05903, 2026.",
+    paper: "https://arxiv.org/abs/2608.05903",
+    home_page: "https://haodong-yan.github.io/robust-wam-project-page/",
+  },
+  {
+    title:
+      "SG-WAM: Text-Grounded and Spatial-aware Semantic Guidance for World-Action Models",
+    authors:
+      "Junjie He*, Junfeng Li*, Zhide Zhong*, Haodong Yan*, Ruixin Li, Yangyang Zheng, Jiaguan Zhu, Tianran Zhang, Yuqiao Du, Wen Chen, Shunbo Zhou, Haoang Li",
+    venue: "arXiv preprint arXiv:2608.08839, 2026.",
+    paper: "https://arxiv.org/abs/2608.08839",
+  },
+  {
+    title:
+      "Is Forward Prediction Enough? Physical State Grounding for JEPA World Models",
+    authors:
+      "Haodong Yan*, Jiaguan Zhu*, Mingyuan Jia, Ruiqing Yin, Junjie He, Zhide Zhong, Junfeng Li, Jinxuan Lu, Hengtao Li, Tianran Zhang, Jiayi Chen, Wenxuan Song, Wen Chen, Yuxiang Gao, Haoang Li",
+    venue: "arXiv preprint arXiv:2608.06799, 2026.",
+    paper: "https://arxiv.org/abs/2608.06799",
+    home_page: "https://haodong-yan.github.io/psg-jepa-project-page/",
+  },
+  {
+    title:
       "DualCoT-VLA: Visual-Linguistic Chain of Thought via Parallel Reasoning for Vision-Language-Action Models",
     authors:
-      "Zhide Zhong*, Junfeng Li*, Junjie He, Haodong Yan, Xin Gong, Guanyi Zhao, Yingjie Cai, Jiantao Gao, Xu Yan, Bingbing Liu, Yingcong Chen, Liuqing Yang, Haoang Li",
-    venue: "arXiv preprint arXiv:2603.22280, 2026.",
+      "Zhide Zhong*, Junfeng Li*, Junjie He*, Haodong Yan, Xin Gong, Guanyi Zhao, Yingjie Cai, Jiantao Gao, Xu Yan, Bingbing Liu, Yingcong Chen, Liuqing Yang, Haoang Li",
+    venue: "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2026.",
     paper: "https://arxiv.org/abs/2603.22280",
     home_page: "https://livfour.github.io/DualCoT-VLA/",
   },

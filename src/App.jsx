@@ -26,14 +26,15 @@ function useColors() {
     paper: theme.palette.background.paper,
     ink: theme.palette.text.primary,
     sub: theme.palette.text.secondary,
-    muted: "#8a8377",
+    muted: "#6f685d",
     red: theme.palette.primary.main,
     amber: theme.palette.secondary.main,
-    gold: "#b8943e",
+    gold: "#8b5e13",
     rule: theme.palette.text.primary,
     ruleLight: theme.palette.divider,
-    cardBorder: "rgba(26, 26, 24, 0.25)",
-    cardHover: "rgba(194, 69, 45, 0.03)",
+    cardBorder: "rgba(26, 26, 24, 0.14)",
+    cardHover: "#fffaf5",
+    glassBg: "rgba(250, 248, 244, 0.94)",
   };
 }
 
@@ -41,57 +42,69 @@ function makeStyles(C) {
   return {
     card: {
       p: 2.5,
-      bgcolor: C.paper,
-      borderRadius: 0,
+      bgcolor: C.glassBg,
+      borderRadius: "16px",
       border: `1px solid ${C.cardBorder}`,
-      boxShadow: "none",
-      transition: "background 0.25s, border-color 0.25s",
+      boxShadow: "0 1px 3px rgba(26, 26, 24, 0.05), 0 1px 2px rgba(26, 26, 24, 0.03)",
+      backdropFilter: "blur(20px)",
+      WebkitBackdropFilter: "blur(20px)",
+      transition: "all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
       position: "relative",
       "&:hover": {
         bgcolor: C.cardHover,
-        borderColor: "rgba(194, 69, 45, 0.4)",
+        borderColor: "rgba(190, 66, 43, 0.32)",
+        boxShadow: "0 4px 12px rgba(26, 26, 24, 0.07), 0 2px 4px rgba(26, 26, 24, 0.04)",
+        transform: "translateY(-1px)",
       },
     },
     sectionHeading: {
-      color: C.red,
+      color: C.ink,
       fontWeight: 700,
-      textTransform: "uppercase",
-      letterSpacing: "0.08em",
-      fontSize: { xs: "0.85rem", md: "0.9rem" },
+      fontSize: { xs: "1.1rem", md: "1.2rem" },
+      letterSpacing: "-0.01em",
       mb: 2,
-      pb: 1,
-      borderBottom: `2px solid ${C.rule}`,
+      pb: 1.2,
+      borderBottom: `1.5px solid ${C.ruleLight}`,
     },
     tagPill: {
       display: "inline-block",
       fontSize: "0.7rem",
-      fontWeight: 700,
-      letterSpacing: "0.06em",
-      textTransform: "uppercase",
+      fontWeight: 600,
+      letterSpacing: "0.02em",
       color: C.amber,
+      bgcolor: "rgba(139, 94, 19, 0.10)",
+      px: 1.2,
+      py: 0.3,
+      borderRadius: "8px",
       lineHeight: 1.5,
     },
   };
 }
 
-function punkBtn(color, paperColor) {
+function iosBtn(color) {
   return {
     display: "inline-flex",
     alignItems: "center",
     gap: 0.5,
-    px: 1.2,
-    py: 0.4,
-    fontSize: "0.65rem",
-    fontWeight: 700,
-    letterSpacing: "0.1em",
-    textTransform: "uppercase",
+    px: 1.4,
+    py: 0.5,
+    fontSize: "0.68rem",
+    fontWeight: 600,
+    letterSpacing: "0.02em",
     textDecoration: "none",
     color,
-    border: `1px solid ${color}`,
-    borderRadius: 0,
+    bgcolor: `${color}10`,
+    border: "none",
+    borderRadius: "10px",
     lineHeight: 1,
-    transition: "all 0.2s",
-    "&:hover": { bgcolor: color, color: paperColor },
+    transition: "all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+    "&:hover": {
+      bgcolor: `${color}20`,
+      transform: "scale(1.04)",
+    },
+    "&:active": {
+      transform: "scale(0.97)",
+    },
   };
 }
 
@@ -184,7 +197,7 @@ const PublicationCard = ({ pub }) => {
       </Typography>
       <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mt: 1.5 }}>
         <Box sx={styles.tagPill}>{pub.venue}</Box>
-        <Stack direction="row" spacing={1}>
+        <Stack direction="row" spacing={0.8}>
           {pub.home_page && (
             <Box
               component="a"
@@ -192,7 +205,7 @@ const PublicationCard = ({ pub }) => {
               target="_blank"
               rel={REL_EXTERNAL}
               onClick={(e) => e.stopPropagation()}
-              sx={punkBtn(C.red, C.paper)}
+              sx={iosBtn(C.red)}
             >
               <HomeIcon sx={{ fontSize: 14 }} />
               Project
@@ -205,7 +218,7 @@ const PublicationCard = ({ pub }) => {
               target="_blank"
               rel={REL_EXTERNAL}
               onClick={(e) => e.stopPropagation()}
-              sx={punkBtn(C.amber, C.paper)}
+              sx={iosBtn(C.amber)}
             >
               <ArticleIcon sx={{ fontSize: 14 }} />
               Paper
@@ -218,7 +231,7 @@ const PublicationCard = ({ pub }) => {
               target="_blank"
               rel={REL_EXTERNAL}
               onClick={(e) => e.stopPropagation()}
-              sx={punkBtn(C.ink, C.paper)}
+              sx={iosBtn(C.ink)}
             >
               <GitHubIcon sx={{ fontSize: 14 }} />
               Code
@@ -273,11 +286,12 @@ const Sidebar = () => {
     <Box sx={{ position: { md: "sticky" }, top: { md: 48 } }}>
       <Box
         sx={{
-          width: 200,
-          height: 200,
+          width: 180,
+          height: 180,
           mb: 2.5,
-          border: `1.5px solid ${C.rule}`,
+          borderRadius: "28px",
           overflow: "hidden",
+          boxShadow: "0 4px 16px rgba(26, 26, 24, 0.08)",
         }}
       >
         <Avatar
@@ -288,21 +302,21 @@ const Sidebar = () => {
         />
       </Box>
 
-      <Typography variant="h4" fontWeight={800} sx={{ color: C.ink }}>
+      <Typography variant="h4" fontWeight={700} sx={{ color: C.ink }}>
         {profile.name}
       </Typography>
 
-      <Stack spacing={0.2} sx={{ mt: 1 }}>
+      <Stack spacing={0.3} sx={{ mt: 1 }}>
         <Typography variant="body2" sx={{ color: C.sub }}>{profile.title}</Typography>
         <Typography variant="body2" sx={{ color: C.sub }}>{profile.affiliation}</Typography>
         <Typography variant="body2" sx={{ color: C.sub }}>{profile.location}</Typography>
       </Stack>
 
-      <Box sx={{ my: 2.5, height: "2px", bgcolor: C.rule }} />
+      <Box sx={{ my: 2.5, height: "1px", bgcolor: C.ruleLight }} />
 
       <Typography
         variant="body2"
-        sx={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: C.red, mb: 0.8 }}
+        sx={{ fontWeight: 650, letterSpacing: "-0.01em", color: C.red, mb: 0.8 }}
       >
         Research
       </Typography>
@@ -310,11 +324,11 @@ const Sidebar = () => {
         {profile.researchInterests}
       </Typography>
 
-      <Box sx={{ my: 2.5, height: "2px", bgcolor: C.rule }} />
+      <Box sx={{ my: 2.5, height: "1px", bgcolor: C.ruleLight }} />
 
       <Typography
         variant="body2"
-        sx={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: C.red, mb: 1.2 }}
+        sx={{ fontWeight: 650, letterSpacing: "-0.01em", color: C.red, mb: 1.2 }}
       >
         Links
       </Typography>
@@ -337,7 +351,7 @@ const Sidebar = () => {
               color: C.ink,
               fontWeight: 500,
               fontSize: "0.88rem",
-              transition: "color 0.2s",
+              transition: "color 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
               "&:hover": { color: C.red },
             }}
           >
@@ -356,7 +370,13 @@ const App = () => {
 
   return (
     <Box sx={{ bgcolor: C.bg, minHeight: "100vh" }}>
-      <Box sx={{ height: "3px", bgcolor: C.red }} />
+      <Box
+        sx={{
+          height: "3px",
+          background: `linear-gradient(90deg, ${C.red}, ${C.amber})`,
+          borderRadius: "0 0 2px 2px",
+        }}
+      />
 
       <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
         <Box
@@ -394,7 +414,7 @@ const App = () => {
 
               <Box>
                 <Typography variant="h5" sx={styles.sectionHeading}>
-                  Publications &amp; Research
+                  Publications & Research
                 </Typography>
                 <Stack spacing={1.5}>
                   {publications.map((pub) => (
@@ -405,7 +425,7 @@ const App = () => {
 
               <Box>
                 <Typography variant="h5" sx={styles.sectionHeading}>
-                  Education &amp; Experience
+                  Education & Experience
                 </Typography>
                 <Stack spacing={1.5}>
                   {experiences.map((exp) => (
@@ -418,13 +438,13 @@ const App = () => {
         </Box>
       </Container>
 
-      <Box sx={{ borderTop: `2px solid ${C.rule}`, py: 2, mt: 4 }}>
+      <Box sx={{ borderTop: `1px solid ${C.ruleLight}`, py: 2.5, mt: 4 }}>
         <Typography
           variant="body2"
           align="center"
-          sx={{ color: C.muted, letterSpacing: "0.06em", fontSize: "0.75rem", textTransform: "uppercase" }}
+          sx={{ color: C.muted, letterSpacing: "0.01em", fontSize: "0.78rem" }}
         >
-          &copy; {new Date().getFullYear()} {profile.name} &mdash; All Rights Reserved
+          &copy; {new Date().getFullYear()} {profile.name}
         </Typography>
       </Box>
     </Box>

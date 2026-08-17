@@ -1,11 +1,11 @@
 body {
   margin: 0;
   padding: 0;
-  background: #f0ebe3;
+  background: #f3efe9;
   color: #1a1a18;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scrollbar-color: #c2a882 #e8e2d8;
+  scrollbar-color: #a99a84 transparent;
   scrollbar-width: thin;
 }
 
@@ -14,11 +14,11 @@ body {
 }
 
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #e8e2d8; }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: #c2a882;
-  border-radius: 0;
+  background: rgba(120, 108, 90, 0.45);
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #a88c66;
+  background: rgba(92, 86, 74, 0.62);
 }
