@@ -3,8 +3,7 @@ import path from "path";
 import { publications } from "./data";
 
 const resumePath = path.join(process.cwd(), "resume", "junfeng.tex");
-const expectedVenue =
-  "IEEE Transactions on Robotics (T-RO), conditionally accepted.";
+const expectedVenue = "IEEE Transactions on Robotics (T-RO).";
 
 describe("public profile content", () => {
   test("does not disclose the personal phone number", () => {
@@ -14,7 +13,7 @@ describe("public profile content", () => {
     expect(resume).not.toContain("tel:+8617683881879");
   });
 
-  test("lists FlowVLA as conditionally accepted by T-RO", () => {
+  test("lists FlowVLA as a T-RO paper without review-status language", () => {
     const resume = fs.readFileSync(resumePath, "utf8");
     const flowVla = publications.find((publication) =>
       publication.title.startsWith("FlowVLA:"),
@@ -22,5 +21,7 @@ describe("public profile content", () => {
 
     expect(flowVla.venue).toBe(expectedVenue);
     expect(resume).toContain(expectedVenue);
+    expect(flowVla.venue).not.toContain("conditionally accepted");
+    expect(resume).not.toContain("conditionally accepted");
   });
 });
