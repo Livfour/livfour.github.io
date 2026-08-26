@@ -16,7 +16,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "predeploy": "make resume && npm run build",
+    "postbuild": "node -e \"require('node:fs').rmSync('build/cv', { recursive: true, force: true })\"",
+    "test": "react-scripts test --watchAll=false",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build -r git@github.com:Livfour/livfour.github.io.git -b gh-pages"
   },
   "browserslist": {

@@ -337,7 +337,6 @@ const Sidebar = () => {
           { href: `mailto:${profile.email}`, icon: <EmailIcon sx={{ fontSize: 17 }} />, label: "Email" },
           { href: profile.github, icon: <GitHubIcon sx={{ fontSize: 17 }} />, label: "GitHub", ext: true },
           { href: profile.googleScholar, icon: <SchoolIcon sx={{ fontSize: 17 }} />, label: "Google Scholar", ext: true },
-          { href: "./cv", icon: <ArticleIcon sx={{ fontSize: 17 }} />, label: "CV", ext: true },
         ].map(({ href, icon, label, ext }) => (
           <Link
             key={label}
