@@ -32,9 +32,6 @@ export const profile = {
     {
       text: "My research interests lie in **Vision-Language-Action (VLA) Models** and **World Models**. I am passionate about building embodied agents that can understand the physical world and perform complex tasks.",
     },
-    {
-      text: "I am always open to research collaborations. Please feel free to reach out if you are interested in working together!",
-    },
   ],
 };
 
